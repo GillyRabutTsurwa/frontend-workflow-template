@@ -1,0 +1,1 @@
+"use strict";alert("TU VAS BIEN ICI");
