@@ -78,16 +78,30 @@ function watch() {
     browser: "firefox",
   });
 
-  gulp.watch("./src/*.html", minifyHTML);
-  gulp.watch("./src/sass/**/*.scss", style);
-  gulp.watch("./src/js/app.js", configureJS);
+  // gulp.watch("./src/*.html", minifyHTML);
+  // gulp.watch("./src/sass/**/*.scss", style);
+  // gulp.watch("./src/js/app.js", configureJS);
 
+  //NOTENEW: the first parametre can also be an array of the files we want to watch.
+  // the second parametre, we do not use an array. we either use gulp.series() or gulp.parallel()
+  gulp.watch(
+    ["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"],
+    gulp.parallel(minifyHTML, style, configureJS)
+  );
+
+  // These can stay as they are. No need for them to run one after another or at the same time.
   gulp.watch("./src/*.html").on("change", browserSync.reload);
   gulp.watch("./src/js/app.js").on("change", browserSync.reload);
 }
 
+// NEWIMPORTANT: default task. what is what runs when we just type "gulp" in the command line.
+//NOTE:
+exports.default = gulp.series(gulp.parallel(minifyHTML, style, configureJS), watch);
+
+// These can stay in case we want to run our tasks individually.
+// these tasks if needed to be run are run by typing gulp [taskName]
+// like gulp minifyHTML or gulp style etc.
 exports.minifyHTML = minifyHTML;
 exports.style = style;
 exports.configureJS = configureJS;
-
 exports.watch = watch;
