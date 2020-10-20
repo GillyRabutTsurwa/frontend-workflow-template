@@ -1,1 +1,1 @@
-"use strict";alert("TU VAS BIEN ICI");
+"use strict";alert("TU VAS BIEN ICI");var bonjour=function(n){return"Salut ".concat(n)},hello=function(n){return"Salut ".concat(n)};window.addEventListener("DOMContentLoaded",function(){var n=bonjour("Gilbert"),o=hello("Gulp User");console.log(n,o)});
