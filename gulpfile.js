@@ -1,6 +1,5 @@
 const gulp = require("gulp");
-const sass = require("gulp-sass");
-sass.compiler = require("sass");
+const sass = require("gulp-sass")(require("sass"));
 const htmlMin = require("gulp-htmlmin");
 const cleanCSS = require("gulp-clean-css");
 const browserSync = require("browser-sync").create();
@@ -48,10 +47,7 @@ function watch() {
     browser: "firefox",
   });
 
-  gulp.watch(
-    ["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"],
-    gulp.parallel(minifyHTML, style, configureJS)
-  );
+  gulp.watch(["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"], gulp.parallel(minifyHTML, style, configureJS));
 
   gulp.watch("./src/*.html").on("change", browserSync.reload);
   gulp.watch("./src/js/app.js").on("change", browserSync.reload);
