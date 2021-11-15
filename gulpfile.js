@@ -1,5 +1,10 @@
 const gulp = require("gulp");
+<<<<<<< HEAD
 const sass = require("gulp-sass")(require("sass"));
+=======
+const sass = require("gulp-sass");
+sass.compiler = require("sass");
+>>>>>>> fbab2f2d7454d17a7a6f56696b4d6f882e7bab4a
 const htmlMin = require("gulp-htmlmin");
 const cleanCSS = require("gulp-clean-css");
 const browserSync = require("browser-sync").create();
@@ -37,6 +42,13 @@ function configureJS() {
     )
     .pipe(uglify())
     .pipe(gulp.dest("./dist/js"));
+<<<<<<< HEAD
+=======
+}
+
+function copyImages() {
+  return gulp.src("./src/img/*").pipe(gulp.dest("./dist/img"));
+>>>>>>> fbab2f2d7454d17a7a6f56696b4d6f882e7bab4a
 }
 
 function watch() {
@@ -47,7 +59,14 @@ function watch() {
     browser: "firefox",
   });
 
+<<<<<<< HEAD
   gulp.watch(["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"], gulp.parallel(minifyHTML, style, configureJS));
+=======
+  gulp.watch(
+    ["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"],
+    gulp.parallel(minifyHTML, style, configureJS)
+  );
+>>>>>>> fbab2f2d7454d17a7a6f56696b4d6f882e7bab4a
 
   gulp.watch("./src/*.html").on("change", browserSync.reload);
   gulp.watch("./src/js/app.js").on("change", browserSync.reload);
@@ -58,4 +77,8 @@ exports.default = gulp.series(gulp.parallel(minifyHTML, style, configureJS), wat
 exports.minifyHTML = minifyHTML;
 exports.style = style;
 exports.configureJS = configureJS;
+<<<<<<< HEAD
+=======
+exports.copyImages = copyImages;
+>>>>>>> fbab2f2d7454d17a7a6f56696b4d6f882e7bab4a
 exports.watch = watch;
