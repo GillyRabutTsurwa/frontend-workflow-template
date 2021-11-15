@@ -1,6 +1,5 @@
 const gulp = require("gulp");
-const sass = require("gulp-sass");
-sass.compiler = require("sass");
+const sass = require("gulp-sass")(require("sass"));
 const htmlMin = require("gulp-htmlmin");
 const cleanCSS = require("gulp-clean-css");
 const browserSync = require("browser-sync").create();
@@ -56,8 +55,9 @@ function watch() {
   gulp.watch("./src/js/app.js").on("change", browserSync.reload);
 }
 
+exports.default = gulp.series(gulp.parallel(minifyHTML, style, configureJS), watch);
+
 exports.minifyHTML = minifyHTML;
 exports.style = style;
 exports.configureJS = configureJS;
-
 exports.watch = watch;
