@@ -10,17 +10,17 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"browser-sync": "^2.26.10",
+		"browser-sync": "^2.27.7",
 		"gulp": "^4.0.2",
 		"gulp-babel": "^8.0.0",
 		"gulp-clean-css": "^4.3.0",
 		"gulp-htmlmin": "^5.0.1",
-		"gulp-sass": "^4.1.0",
+		"gulp-sass": "^5.0.0",
 		"gulp-uglify": "^3.0.2",
-		"sass": "^1.26.10"
+		"sass": "^1.43.4"
 	},
 	"dependencies": {
-		"@babel/core": "^7.10.5",
-		"@babel/preset-env": "^7.10.4"
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.0"
 	}
 }

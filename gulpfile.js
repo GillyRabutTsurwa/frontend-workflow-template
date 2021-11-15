@@ -1,8 +1,8 @@
 // NOTE: Install all the necessary dependencies
 const gulp = require("gulp");
-const sass = require("gulp-sass");
-// NOTE: This sass.compiler allows us to chose node-sass or dart-sass (sass)
+// NOTE: the call back qui fait partie de la deuxieme partie du code allows us to chose node-sass or dart-sass (sass)
 //NOTE: Je vais utiliser dart-sass puisque node-sass sera deprecated
+const sass = require("gulp-sass")(require("sass"));
 sass.compiler = require("sass");
 const htmlMin = require("gulp-htmlmin");
 const cleanCSS = require("gulp-clean-css");
@@ -84,10 +84,7 @@ function watch() {
 
   //NOTENEW: the first parametre can also be an array of the files we want to watch.
   // the second parametre, we do not use an array. we either use gulp.series() or gulp.parallel()
-  gulp.watch(
-    ["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"],
-    gulp.parallel(minifyHTML, style, configureJS)
-  );
+  gulp.watch(["./src/*.html", "./src/sass/**/*.scss", "./src/js/app.js"], gulp.parallel(minifyHTML, style, configureJS));
 
   // These can stay as they are. No need for them to run one after another or at the same time.
   gulp.watch("./src/*.html").on("change", browserSync.reload);
